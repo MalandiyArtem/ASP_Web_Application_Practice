@@ -31,6 +31,12 @@ namespace MyCompany_v3.Areas.Admin.Controllers
             GetUserName();
             if (ModelState.IsValid)
             {
+                if (dataManager.NewsItems.GetNewsItems().Any(x => x.Title == model.Title))
+                {
+                    ViewBag.TitleIsExist = "true";
+                    return View(model);
+                }
+
                 dataManager.NewsItems.SaveNewsItem(model);
                 return RedirectToAction(nameof(NewsController.ManageNews), nameof(NewsController).CutController());
             }
