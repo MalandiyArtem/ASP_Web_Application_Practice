@@ -5,20 +5,25 @@ using System.Linq;
 using System.Threading.Tasks;
 using MyCompany_v3.Domain;
 
-namespace MyCompany_v3.Areas.Admin.Controllers
+namespace MyCompany_v3.Areas.User.Controllers
 {
-    [Area("Admin")] // указать, чтобы соглашение AdminArea вступило в силу
-    public class HomeController : Controller
+    [Area("User")]
+    public class ServicesController : Controller
     {
         private readonly DataManager dataManager;
 
-        public HomeController(DataManager dataManager)
+        public ServicesController(DataManager dataManager)
         {
             this.dataManager = dataManager;
         }
-        public IActionResult Index()
+
+        public IActionResult Index(Guid id)
         {
             GetUserName();
+            if (id != default)
+                return View("Show", dataManager.ServiceItems.GetServiceItemById(id));
+
+            ViewBag.TextField = dataManager.TextFields.GetTextFieldByCodeWord("PageServices");
             return View(dataManager.ServiceItems.GetServiceItems());
         }
 

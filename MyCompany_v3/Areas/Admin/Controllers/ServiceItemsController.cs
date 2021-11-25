@@ -26,12 +26,14 @@ namespace MyCompany_v3.Areas.Admin.Controllers
 
         public IActionResult Edit(Guid id)
         {
+            GetUserName();
             var entity = id == default ? new ServiceItem() : dataManager.ServiceItems.GetServiceItemById(id);
             return View(entity);
         }
         [HttpPost]
         public IActionResult Edit(ServiceItem model, IFormFile titleImageFile)
         {
+            GetUserName();
             if (ModelState.IsValid)
             {
                 if (titleImageFile != null)
@@ -51,8 +53,14 @@ namespace MyCompany_v3.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Delete(Guid id)
         {
+            GetUserName();
             dataManager.ServiceItems.DeleteServiceItem(id);
             return RedirectToAction(nameof(HomeController.Index), nameof(HomeController).CutController());
+        }
+
+        private void GetUserName()
+        {
+            ViewBag.UserName = User.Identity.Name;
         }
     }
 }

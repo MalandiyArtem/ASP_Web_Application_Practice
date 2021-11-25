@@ -1,37 +1,37 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MyCompany_v3.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MyCompany_v3.Domain;
 
-namespace MyCompany_v3.Controllers
+namespace MyCompany_v3.Areas.User.Controllers
 {
+    [Area("User")]
     public class HomeController : Controller
     {
         private readonly DataManager dataManager;
+        
 
         public HomeController(DataManager dataManager)
         {
             this.dataManager = dataManager;
         }
-
         public IActionResult Index()
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                return RedirectToAction("Index", "Home", new { area = "User" });
-            }
+            GetUserName();
             return View(dataManager.TextFields.GetTextFieldByCodeWord("PageIndex"));
         }
 
         public IActionResult Contacts()
         {
-            //if (User.Identity.IsAuthenticated)
-            //{
-            //    return RedirectToAction("Contacts", "Home", new { area = "User" });
-            //}
+            GetUserName();
             return View(dataManager.TextFields.GetTextFieldByCodeWord("PageContacts"));
+        }
+
+        private void GetUserName()
+        {
+            ViewBag.UserName = User.Identity.Name;
         }
     }
 }

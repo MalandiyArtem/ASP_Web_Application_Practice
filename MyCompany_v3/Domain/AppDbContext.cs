@@ -26,6 +26,7 @@ namespace MyCompany_v3.Domain
              // Заполняем бд значениями по умолчанию
 
              // Создаем роли 
+             // Роль админа
              modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole
              {
                  Id = "391403d9-ba6d-4213-bebe-ad44d7994199",
@@ -33,9 +34,16 @@ namespace MyCompany_v3.Domain
                  NormalizedName = "ADMIN"
              });
 
+            // Роль пользователя
+            modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole
+            {
+                Id = "4ca94fb5-67e7-4e5b-a814-7212f19d2530",
+                Name = "user",
+                NormalizedName = "USER"
+            });
 
-             // Создаем пользователя
-             modelBuilder.Entity<IdentityUser>().HasData(new IdentityUser
+            // Создаем пользователя-админа
+            modelBuilder.Entity<IdentityUser>().HasData(new IdentityUser
              {
                  Id = "7ff2d40a-5884-4d27-ba2d-9854b0d29581",
                  UserName = "admin",
@@ -47,15 +55,43 @@ namespace MyCompany_v3.Domain
                  SecurityStamp = string.Empty
              });
 
-             // Связываем пользователя с ролью
-             modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
+            // Создаем пользователя
+            modelBuilder.Entity<IdentityUser>().HasData(new IdentityUser
+            {
+                Id = "48a58e3e-7de3-40d3-9d74-97927cbd2c36",
+                UserName = "user1",
+                NormalizedUserName = "USER1",
+                Email = "user1@gmail.com",
+                NormalizedEmail = "USER1@GMAIL.COM",
+                EmailConfirmed = true,
+                PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(null, "user1password"),
+                SecurityStamp = string.Empty
+            });
+
+            // Связываем пользователя с ролью
+            // Связываем пользователя-админа с ролью админ
+            modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
              {
                  RoleId = "391403d9-ba6d-4213-bebe-ad44d7994199",
                  UserId = "7ff2d40a-5884-4d27-ba2d-9854b0d29581"
              });
 
-             // Создаем 3 объекта в бд (наши текстовые поля)
-             modelBuilder.Entity<TextField>().HasData(new TextField
+             // Связываем пользователя-админа с ролью пользователь
+             modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
+             {
+                 RoleId = "4ca94fb5-67e7-4e5b-a814-7212f19d2530",
+                 UserId = "7ff2d40a-5884-4d27-ba2d-9854b0d29581"
+             });
+
+             // Связываем пользователя с ролью пользователь
+             modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
+             {
+                 RoleId = "4ca94fb5-67e7-4e5b-a814-7212f19d2530",
+                 UserId = "48a58e3e-7de3-40d3-9d74-97927cbd2c36"
+             });
+
+            // Создаем 3 объекта в бд (наши текстовые поля)
+            modelBuilder.Entity<TextField>().HasData(new TextField
              {
                  Id = new Guid("fa553176-6507-4047-9531-65a99b83d374"),
                  CodeWord = "PageIndex",

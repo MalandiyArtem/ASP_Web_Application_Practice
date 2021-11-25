@@ -20,6 +20,7 @@ namespace MyCompany_v3.Areas.Admin.Controllers
 
         public IActionResult Edit(string codeWord)
         {
+            GetUserName();
             var entity = dataManager.TextFields.GetTextFieldByCodeWord(codeWord);
             return View(entity);
         }
@@ -27,12 +28,18 @@ namespace MyCompany_v3.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Edit(TextField model)
         {
+            GetUserName();
             if (ModelState.IsValid)
             {
                 dataManager.TextFields.SaveTextField(model);
                 return RedirectToAction(nameof(HomeController.Index), nameof(HomeController).CutController());
             }
             return View(model);
+        }
+
+        private void GetUserName()
+        {
+            ViewBag.UserName = User.Identity.Name;
         }
     }
 }

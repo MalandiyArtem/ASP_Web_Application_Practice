@@ -42,7 +42,8 @@ namespace MyCompany_v3.Controllers
                         await signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, false);
                     if (result.Succeeded)
                     {
-                        return Redirect(returnUrl ?? "/");
+                        //return Redirect(returnUrl ?? "/");
+                        return RedirectToAction("Index", "Home", new { area = "User" });
                     }
                 }
                 ModelState.AddModelError(nameof(LoginViewModel.UserName), "Wrong login or password");

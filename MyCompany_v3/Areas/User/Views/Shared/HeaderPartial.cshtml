@@ -1,0 +1,25 @@
+﻿@using MyCompany_v3.Services
+<div id="header-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+
+                <header id="header">
+                    <h1><a href="~/User" id="logo">@Config.CompanyName</a></h1>
+                    <nav id="nav">
+                        <a asp-area="User" asp-controller="Home" asp-action="Index">Home</a>
+                        <a asp-area="User" asp-controller="Services" asp-action="Index" asp-route-id="">Our services</a>
+                        <a asp-area="User" asp-controller="Home" asp-action="Contacts">Contacts</a>
+                        @if (ViewBag.UserName == "admin")
+                        {
+                            <a asp-area="Admin" asp-controller="Home" asp-action="Index">Admin Panel</a>
+                        }
+                        <a asp-area="" asp-controller="Account" asp-action="Logout">Exit</a>
+                    </nav>
+                    <p style="color: #fffacd"> Welcome, @ViewBag.UserName to</p>
+                </header>
+
+            </div>
+        </div>
+    </div>
+</div>
