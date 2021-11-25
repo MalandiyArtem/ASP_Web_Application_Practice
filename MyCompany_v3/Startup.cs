@@ -36,6 +36,7 @@ namespace MyCompany_v3
             // Подключаем нужный функционал приложения. Связываем интерфейс с его реализацией
             services.AddTransient<ITextFieldsRepository, EFTextFieldsRepository>();
             services.AddTransient<IServiceItemsRepository, EFServiceItemsRepository>();
+            services.AddTransient<INewsItemRepository, EFNewsItemsRepository>();
             services.AddTransient<DataManager>();
 
             // Подключаем контекст бд

@@ -1,0 +1,24 @@
+﻿@model IQueryable<NewsItem>
+@*@{
+    NewsItem newsField = ViewBag.NewsField;
+
+    ViewBag.Title = newsField.MetaTitle;
+    ViewBag.Description = newsField.MetaDescription;
+    ViewBag.Keywords = newsField.MetaKeywords;
+}*@
+
+<div>
+    @if (Model.Any() && Model != null)
+    {
+        <ul class="big-image-list">
+            @foreach (NewsItem entity in Model.OrderByDescending(x => x.DateAdded))
+            {
+                <li>
+                    <h2>@Html.Raw(entity.Title)</h2>
+                    <div>@Html.Raw(entity.Text)</div>
+                </li>
+                <hr />
+            }
+        </ul>
+    }
+</div>

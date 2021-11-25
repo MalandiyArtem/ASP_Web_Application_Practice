@@ -18,6 +18,7 @@ namespace MyCompany_v3.Domain
          // проецируем на базу данных
          public DbSet<TextField> TextFields { get; set; }
          public DbSet<ServiceItem> ServiceItems { get; set; }
+         public DbSet<NewsItem> NewsItems { get; set; }
 
          protected override void OnModelCreating(ModelBuilder modelBuilder)
          {
@@ -110,6 +111,15 @@ namespace MyCompany_v3.Domain
                  Id = new Guid("bd9078af-8dc7-4a7a-8d32-2b58c80ba785"),
                  CodeWord = "PageContacts",
                  Title = "Contacts"
+             });
+
+             // Создаем новость 
+             modelBuilder.Entity<NewsItem>().HasData(new NewsItem
+             {
+                 Id = new Guid("38eaedaf-34ce-45ae-907a-0ccb17366631"),
+                 CodeWord = "PageNews",
+                 Title = "We opened",
+                 Text = "Join us, we are here!"
              });
          }
     }
