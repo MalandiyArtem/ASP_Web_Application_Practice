@@ -19,6 +19,7 @@ namespace MyCompany_v3.Domain
          public DbSet<TextField> TextFields { get; set; }
          public DbSet<ServiceItem> ServiceItems { get; set; }
          public DbSet<NewsItem> NewsItems { get; set; }
+         public DbSet<MessageItem> MessageItems { get; set; }
 
          protected override void OnModelCreating(ModelBuilder modelBuilder)
          {
@@ -121,6 +122,15 @@ namespace MyCompany_v3.Domain
                  Title = "We opened",
                  Text = "Join us, we are here!"
              });
-         }
+
+            // Создаем сообщение
+            modelBuilder.Entity<MessageItem>().HasData(new MessageItem
+            {
+                Id = new Guid("2a0ca8d6-8f4f-4fe7-b7fc-23e123f650c0"),
+                Title = "Tiiitle",
+                Text = "Text Text Text Text",
+                UserId = "48a58e3e-7de3-40d3-9d74-97927cbd2c36"
+            });
+        }
     }
 }

@@ -37,6 +37,7 @@ namespace MyCompany_v3
             services.AddTransient<ITextFieldsRepository, EFTextFieldsRepository>();
             services.AddTransient<IServiceItemsRepository, EFServiceItemsRepository>();
             services.AddTransient<INewsItemRepository, EFNewsItemsRepository>();
+            services.AddTransient<IMessageItemsRepository, EFMessageItemsRepository>();
             services.AddTransient<DataManager>();
 
             // Подключаем контекст бд

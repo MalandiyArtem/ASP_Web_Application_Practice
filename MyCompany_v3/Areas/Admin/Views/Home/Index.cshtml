@@ -30,12 +30,19 @@
             </div>
         }
     </div>
+    <hr />
+    <div class="div-box">
+        <h3>Messages</h3>
+        <a asp-area="Admin" asp-controller="MessageItems" asp-action="Index">Check messages</a>
+    </div>
+    <hr />
     <div class="div-box">
         <h3>Edit pages on site</h3>
         <a asp-area="Admin" asp-controller="TextFields" asp-action="Edit" asp-route-codeWord="PageIndex">Main page</a>
         <a asp-area="Admin" asp-controller="TextFields" asp-action="Edit" asp-route-codeWord="PageServices">Our services</a>
         <a asp-area="Admin" asp-controller="TextFields" asp-action="Edit" asp-route-codeWord="PageContacts">Contacts</a>
     </div>
+    <hr />
 </div>
 
 

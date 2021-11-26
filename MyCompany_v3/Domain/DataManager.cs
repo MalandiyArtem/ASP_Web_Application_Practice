@@ -13,12 +13,15 @@ namespace MyCompany_v3.Domain
         public ITextFieldsRepository TextFields { get; set; }
         public IServiceItemsRepository ServiceItems { get; set; }
         public INewsItemRepository NewsItems { get; set; }
+        public IMessageItemsRepository MessageItems { get; set; }
 
-        public DataManager(ITextFieldsRepository textFieldsRepository, IServiceItemsRepository serviceItemsRepository, INewsItemRepository newsItemRepository)
+        public DataManager(ITextFieldsRepository textFieldsRepository, IServiceItemsRepository serviceItemsRepository,
+            INewsItemRepository newsItemRepository, IMessageItemsRepository messageRepository)
         {
             TextFields = textFieldsRepository;
             ServiceItems = serviceItemsRepository;
             NewsItems = newsItemRepository;
+            MessageItems = messageRepository;
         }
     }
 }
