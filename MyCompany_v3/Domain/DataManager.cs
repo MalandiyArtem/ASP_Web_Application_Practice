@@ -14,14 +14,18 @@ namespace MyCompany_v3.Domain
         public IServiceItemsRepository ServiceItems { get; set; }
         public INewsItemRepository NewsItems { get; set; }
         public IMessageItemsRepository MessageItems { get; set; }
+        public IReviewItemsRepository ReviewItems { get; set; }
 
-        public DataManager(ITextFieldsRepository textFieldsRepository, IServiceItemsRepository serviceItemsRepository,
-            INewsItemRepository newsItemRepository, IMessageItemsRepository messageRepository)
+        public DataManager(
+            ITextFieldsRepository textFieldsRepository, IServiceItemsRepository serviceItemsRepository,
+            INewsItemRepository newsItemRepository, IMessageItemsRepository messageRepository,
+            IReviewItemsRepository reviewItemsRepository)
         {
             TextFields = textFieldsRepository;
             ServiceItems = serviceItemsRepository;
             NewsItems = newsItemRepository;
             MessageItems = messageRepository;
+            ReviewItems = reviewItemsRepository;
         }
     }
 }

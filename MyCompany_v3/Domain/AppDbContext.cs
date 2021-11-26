@@ -20,6 +20,7 @@ namespace MyCompany_v3.Domain
          public DbSet<ServiceItem> ServiceItems { get; set; }
          public DbSet<NewsItem> NewsItems { get; set; }
          public DbSet<MessageItem> MessageItems { get; set; }
+         public DbSet<ReviewItem> ReviewItems { get; set; }
 
          protected override void OnModelCreating(ModelBuilder modelBuilder)
          {
@@ -131,6 +132,15 @@ namespace MyCompany_v3.Domain
                 Text = "Text Text Text Text",
                 UserId = "48a58e3e-7de3-40d3-9d74-97927cbd2c36"
             });
-        }
+
+            // Создаем новость на рецензию
+            modelBuilder.Entity<ReviewItem>().HasData(new ReviewItem
+            {
+                Id = new Guid("862ff5d9-2f4f-4522-90ae-b8d66cef3764"),
+                Title = "First news to review",
+                Text = "Hello I am really good at writing news",
+                UserId = "48a58e3e-7de3-40d3-9d74-97927cbd2c36"
+            });
+         }
     }
 }

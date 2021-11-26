@@ -7,6 +7,10 @@
     ViewBag.Keywords = newsField.MetaKeywords;
 }*@
 
+<div class="div-box">
+    <a asp-area="User" asp-controller="SendReview" asp-action="Send">Send your news for review</a>
+</div>
+
 <div>
     @if (Model.Any() && Model != null)
     {

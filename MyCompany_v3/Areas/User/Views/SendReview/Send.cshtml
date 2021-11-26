@@ -1,0 +1,42 @@
+﻿@model ReviewItem
+@{
+    string strTitle = "Send to review";
+    ViewBag.Title = strTitle;
+}
+
+<script src="~/js/ckeditor/ckeditor.js"></script>
+
+<div>
+    <h2>@strTitle</h2>
+    <div>
+        <form asp-area="User" asp-controller="SendReview" asp-action="Send" method="post" enctype="multipart/form-data">
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="DateAdded" />
+            <input type="hidden" asp-for="UserId" value="@ViewBag.UserId"/>
+
+            <div asp-validation-summary="All"></div>
+            <div class="div-box">
+                <label asp-for="Title"></label>
+                <input asp-for="Title" />
+                <span asp-validation-for="Title"></span>
+            </div>
+
+            <div class="div-box">
+                <label asp-for="Text"></label>
+                <textarea asp-for="Text"></textarea>
+                <span asp-validation-for="Text"></span>
+            </div>
+
+            <input type="submit" value="Send" />
+        </form>
+    </div>
+</div>
+
+
+
+<script>
+    window.onload = function() {
+        var newCKEdit = CKEDITOR.replace('@Html.IdFor(x=>x.Text)');
+        newCKEdit.updateElement();
+    }
+</script>
