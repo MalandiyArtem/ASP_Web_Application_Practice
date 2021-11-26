@@ -1,0 +1,15 @@
+﻿@model MessageItem
+
+<div>
+    <h2>
+        @Model.Title
+    </h2>
+</div>
+<div>
+    @Html.Raw(Model.Text)
+
+    <form style="display: inline-block;" id="form-@Model.Id" asp-area="User" asp-controller="ResultReview" asp-action="Delete" method="post">
+        <input type="hidden" name="id" value="@Model.Id" />
+        <a href="#" onclick="document.getElementById('form-@Model.Id').submit();">Delete</a>
+    </form>
+</div>

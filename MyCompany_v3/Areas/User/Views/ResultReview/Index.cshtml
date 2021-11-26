@@ -1,0 +1,29 @@
+﻿@model IQueryable<MessageViewModel>
+@{
+    string strTitle = "Messages";
+    ViewBag.Title = strTitle;
+}
+
+<div>
+    <h2>@strTitle</h2>
+    <div>
+        @if (Model.Any())
+        {
+            <div>
+                @foreach (var entity in Model)
+                {
+                    <div>
+                        <form style="display: inline-block;" id="form-@entity.Id" asp-area="User" asp-controller="ResultReview" asp-action="Delete" method="post">
+                            <input type="hidden" name="id" value="@entity.Id" />
+                            <a href="#" onclick="document.getElementById('form-@entity.Id').submit();">Delete</a>
+                        </form>
+                        <span style="margin-left: 5px">Title: </span>
+                        <a style="margin-left: 3px" asp-area="User" asp-controller="ResultReview" asp-action="Index" asp-route-id="@entity.Id">
+                            @($"{entity.Title}")
+                        </a>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</div>

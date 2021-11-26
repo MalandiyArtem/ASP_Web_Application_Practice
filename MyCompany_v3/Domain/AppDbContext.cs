@@ -130,7 +130,8 @@ namespace MyCompany_v3.Domain
                 Id = new Guid("2a0ca8d6-8f4f-4fe7-b7fc-23e123f650c0"),
                 Title = "Tiiitle",
                 Text = "Text Text Text Text",
-                UserId = "48a58e3e-7de3-40d3-9d74-97927cbd2c36"
+                UserId = "48a58e3e-7de3-40d3-9d74-97927cbd2c36",
+                IsFeedback = false
             });
 
             // Создаем новость на рецензию
@@ -141,6 +142,16 @@ namespace MyCompany_v3.Domain
                 Text = "Hello I am really good at writing news",
                 UserId = "48a58e3e-7de3-40d3-9d74-97927cbd2c36"
             });
-         }
+
+            // Создаем ответ на рецензию
+            modelBuilder.Entity<MessageItem>().HasData(new MessageItem
+            {
+                Id = new Guid("d938d3a3-cd89-469b-a5b9-d83671f22c20"),
+                Title = "Feedback for your news",
+                Text = "Your news is amazing",
+                UserId = "48a58e3e-7de3-40d3-9d74-97927cbd2c36",
+                IsFeedback = true
+            });
+        }
     }
 }

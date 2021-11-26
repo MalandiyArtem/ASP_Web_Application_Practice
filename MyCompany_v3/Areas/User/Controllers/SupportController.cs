@@ -32,7 +32,7 @@ namespace MyCompany_v3.Areas.User.Controllers
             if (ModelState.IsValid)
             {
                 dataManager.MessageItems.SaveMessageItem(model);
-                return RedirectToAction(nameof(SupportController.WriteMessage), nameof(SupportController).CutController());
+                return RedirectToAction(nameof(HomeController.Index), nameof(HomeController).CutController());
             }
             return View(model);
         }

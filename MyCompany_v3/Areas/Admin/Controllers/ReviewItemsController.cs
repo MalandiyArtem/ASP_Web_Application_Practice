@@ -37,15 +37,26 @@ namespace MyCompany_v3.Areas.Admin.Controllers
 
             if (id != default)
             {
-                return View("Show", dataManager.ReviewItems.GetReviewItemById(id));
+                var review = dataManager.ReviewItems.GetReviewItemById(id);
+                var feedback = new MessageViewModel
+                {
+                    Id = review.Id,
+                    Title = review.Title,
+                    Text = review.Text,
+                    IsFeedback = true,
+                    UserId = review.UserId
+                };
+
+                return View("Show", feedback);
             }
             return View(userReview);
         }
 
+        [HttpPost]
         public IActionResult Delete(Guid id)
         {
             dataManager.ReviewItems.DeleteReviewItem(id);
-            return RedirectToAction(nameof(ReviewItemsController.Index), nameof(ReviewItemsController).CutController());
+            return RedirectToAction(nameof(Index), nameof(ReviewItemsController).CutController());
         }
     }
 }

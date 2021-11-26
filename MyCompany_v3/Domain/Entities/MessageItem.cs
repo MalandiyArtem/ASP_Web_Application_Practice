@@ -33,6 +33,6 @@ namespace MyCompany_v3.Domain.Entities
         [ForeignKey("UserId")]
         public string UserId { get; set; }
 
-        public IdentityUser User { get; set; }
+        public bool IsFeedback { get; set; }
     }
 }

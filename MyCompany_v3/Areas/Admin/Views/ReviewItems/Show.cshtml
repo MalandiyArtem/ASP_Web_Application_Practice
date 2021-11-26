@@ -1,5 +1,10 @@
-﻿@model ReviewItem
+﻿@model MessageViewModel
+@{
+    string strTitle = "Write review";
+    ViewBag.Title = strTitle;
+}
 
+<script src="~/js/ckeditor/ckeditor.js"></script>
 <div>
     <h2>
         @Model.Title
@@ -13,3 +18,40 @@
         <a href="#" onclick="document.getElementById('form-@Model.Id').submit();">Delete</a>
     </form>
 </div>
+
+<div style="margin-top: 50px">
+    <h2 style="margin-bottom: 0">@strTitle</h2>
+    <div>
+        <form asp-area="User" asp-controller="Support" asp-action="WriteMessage" method="post" enctype="multipart/form-data">
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="UserId" value="@Model.UserId" />
+            <input type="hidden" asp-for="IsFeedback"/>
+
+            <div asp-validation-summary="All"></div>
+            <div class="div-box">
+                <label asp-for="Title"></label>
+                <input asp-for="Title" value=""/>
+                <span asp-validation-for="Title"></span>
+            </div>
+
+            <div class="div-box">
+                <label asp-for="Text"></label>
+                <textarea asp-for="Text" value=" "></textarea>
+                <span asp-validation-for="Text"></span>
+            </div>
+
+            <input type="submit" value="Send" />
+        </form>
+    </div>
+</div>
+
+
+
+<script>
+    window.onload = function () {
+        var area = document.getElementById('@Html.IdFor(x=>x.Text)');
+        var newCKEdit = CKEDITOR.replace('@Html.IdFor(x=>x.Text)');
+        area.value = '';
+        newCKEdit.updateElement();
+    }
+</script>

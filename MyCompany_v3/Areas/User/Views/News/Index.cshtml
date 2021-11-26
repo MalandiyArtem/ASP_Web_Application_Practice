@@ -7,8 +7,9 @@
     ViewBag.Keywords = newsField.MetaKeywords;
 }*@
 
-<div class="div-box">
-    <a asp-area="User" asp-controller="SendReview" asp-action="Send">Send your news for review</a>
+<div class="div-box" style="margin-bottom: 30px">
+    <a style="float: left" asp-area="User" asp-controller="SendReview" asp-action="Send">Send your news for review</a>
+    <a style="float: right" asp-area="User" asp-controller="ResultReview" asp-action="Index">Check results of reviews</a>
 </div>
 
 <div>
