@@ -1,4 +1,4 @@
-﻿@model MessageViewModel
+﻿@model FeedbackItem
 @{
     string strTitle = "Write review";
     ViewBag.Title = strTitle;
@@ -13,24 +13,28 @@
 <div>
     @Html.Raw(Model.Text)
 
-    <form style="display: inline-block;" id="form-@Model.Id" asp-area="Admin" asp-controller="ReviewItems" asp-action="Delete" method="post">
+    @*<form style="display: inline-block;" id="form-@Model.Id" asp-area="Admin" asp-controller="ReviewItems" asp-action="Delete" method="post">
         <input type="hidden" name="id" value="@Model.Id" />
         <a href="#" onclick="document.getElementById('form-@Model.Id').submit();">Delete</a>
-    </form>
+    </form>*@
 </div>
 
 <div style="margin-top: 50px">
     <h2 style="margin-bottom: 0">@strTitle</h2>
     <div>
-        <form asp-area="User" asp-controller="Support" asp-action="WriteMessage" method="post" enctype="multipart/form-data">
-            <input type="hidden" asp-for="Id" />
-            <input type="hidden" asp-for="UserId" value="@Model.UserId" />
-            <input type="hidden" asp-for="IsFeedback"/>
+        <form asp-area="Admin" asp-controller="ReviewItems" asp-action="ReviewControl" method="post" enctype="multipart/form-data">
+            <input type="hidden" asp-for="Id" value="@Model.Id"/>
+            <input type="hidden" asp-for="ReviewId" value="@Model.ReviewId"/>
+            <input type="hidden" asp-for="UserId" value="@Model.UserId"/>
+
+            <label><input type="radio" name="reviewControl" value="Approve" />Approve</label>
+            <label><input type="radio" name="reviewControl" value="Decline" checked/>Decline</label>
+
 
             <div asp-validation-summary="All"></div>
             <div class="div-box">
                 <label asp-for="Title"></label>
-                <input asp-for="Title" value=""/>
+                <input asp-for="Title" value="" />
                 <span asp-validation-for="Title"></span>
             </div>
 
@@ -43,6 +47,30 @@
             <input type="submit" value="Send" />
         </form>
     </div>
+
+
+    @*<div>
+        <form asp-area="User" asp-controller="Support" asp-action="WriteMessage" method="post" enctype="multipart/form-data">
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="UserId" value="@Model.UserId" />
+            <input type="hidden" asp-for="IsFeedback" />
+
+            <div asp-validation-summary="All"></div>
+            <div class="div-box">
+                <label asp-for="Title"></label>
+                <input asp-for="Title" value="" />
+                <span asp-validation-for="Title"></span>
+            </div>
+
+            <div class="div-box">
+                <label asp-for="Text"></label>
+                <textarea asp-for="Text" value=" "></textarea>
+                <span asp-validation-for="Text"></span>
+            </div>
+
+            <input type="submit" value="Send" />
+        </form>
+    </div>*@
 </div>
 
 

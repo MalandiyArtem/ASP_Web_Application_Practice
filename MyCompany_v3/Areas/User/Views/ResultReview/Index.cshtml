@@ -1,4 +1,4 @@
-﻿@model IQueryable<MessageViewModel>
+﻿@model IQueryable<FeedbackViewModel>
 @{
     string strTitle = "Messages";
     ViewBag.Title = strTitle;
@@ -13,12 +13,12 @@
                 @foreach (var entity in Model)
                 {
                     <div>
-                        <form style="display: inline-block;" id="form-@entity.Id" asp-area="User" asp-controller="ResultReview" asp-action="Delete" method="post">
-                            <input type="hidden" name="id" value="@entity.Id" />
-                            <a href="#" onclick="document.getElementById('form-@entity.Id').submit();">Delete</a>
+                        <form style="display: inline-block;" id="form-@entity.FeedbackId" asp-area="User" asp-controller="ResultReview" asp-action="Delete" method="post">
+                            <input type="hidden" name="id" value="@entity.FeedbackId" />
+                            <a href="#" onclick="document.getElementById('form-@entity.FeedbackId').submit();">Delete</a>
                         </form>
                         <span style="margin-left: 5px">Title: </span>
-                        <a style="margin-left: 3px" asp-area="User" asp-controller="ResultReview" asp-action="Index" asp-route-id="@entity.Id">
+                        <a style="margin-left: 3px" asp-area="User" asp-controller="ResultReview" asp-action="Index" asp-route-id="@entity.FeedbackId">
                             @($"{entity.Title}")
                         </a>
                     </div>

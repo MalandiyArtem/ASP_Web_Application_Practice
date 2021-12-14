@@ -17,7 +17,7 @@
             <div class="div-box">
                 <label asp-for="Title"></label>
                 <input asp-for="Title" />
-                @if (ViewBag.TitleIsExist == "true")
+                @if (ViewBag.TitleIsExist == true)
                 {
                     <span>Title is duplicated. Please change it</span>
                 }

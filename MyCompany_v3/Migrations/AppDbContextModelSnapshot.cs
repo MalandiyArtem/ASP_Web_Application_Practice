@@ -49,14 +49,14 @@ namespace MyCompany_v3.Migrations
                         new
                         {
                             Id = "391403d9-ba6d-4213-bebe-ad44d7994199",
-                            ConcurrencyStamp = "cd05e386-962a-43b7-8d4e-db776b290af6",
+                            ConcurrencyStamp = "69a70022-1aaa-4c6d-bda7-4b287dbddc92",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "4ca94fb5-67e7-4e5b-a814-7212f19d2530",
-                            ConcurrencyStamp = "2f83b5d0-eaf9-45b4-b8ef-9867c916fc5d",
+                            ConcurrencyStamp = "af1206e6-0325-4ebf-9270-7f84807c3211",
                             Name = "user",
                             NormalizedName = "USER"
                         });
@@ -155,13 +155,13 @@ namespace MyCompany_v3.Migrations
                         {
                             Id = "7ff2d40a-5884-4d27-ba2d-9854b0d29581",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c7c7dc43-c2a4-4ac1-b58a-6410244b4b95",
+                            ConcurrencyStamp = "da5f5cda-75e2-4799-b74d-275fa0952740",
                             Email = "my@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MY@EMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHs0LkFSvAWJKJMgyepDVoz1YhMvahxj3u0BzswDlT/yIxQJ/7Z1N4XWHg3xEz/Vyw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBZgG88gPwLT+U+NL6wOR+qomVvEvnH50XAqrWj4YB9ppF+jXcaYk69CfXcyNFIQ/Q==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -171,13 +171,13 @@ namespace MyCompany_v3.Migrations
                         {
                             Id = "48a58e3e-7de3-40d3-9d74-97927cbd2c36",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9ea2921e-93e7-4593-9810-6ec5d029bacf",
+                            ConcurrencyStamp = "b63a971c-c60b-45b3-a7bf-6bed31699ec6",
                             Email = "user1@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "USER1@GMAIL.COM",
                             NormalizedUserName = "USER1",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHn0TZTKCw78MmpvLtIkK30tX8lD8QDaUyr0TRwCmKRyPtQcoyXsAAVEc13RdZrBAQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMl4SXtwQUnso8sf5sCjQCuBCQRrS1lRh9GE6IexE6SRJ2dsWn6PbAQjT3Nn/MAKFQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -282,7 +282,7 @@ namespace MyCompany_v3.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("MyCompany_v3.Domain.Entities.MessageItem", b =>
+            modelBuilder.Entity("MyCompany_v3.Domain.Entities.FeedbackItem", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -291,8 +291,44 @@ namespace MyCompany_v3.Migrations
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsFeedback")
-                        .HasColumnType("bit");
+                    b.Property<Guid>("ReviewId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FeedbackItems");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("ebb21448-243e-49fb-8fc4-c711b15a6dca"),
+                            CreationDate = new DateTime(2021, 12, 14, 16, 20, 5, 756, DateTimeKind.Utc).AddTicks(6895),
+                            ReviewId = new Guid("862ff5d9-2f4f-4522-90ae-b8d66cef3764"),
+                            Text = "Great job, your news was approved",
+                            Title = "Well done",
+                            UserId = "48a58e3e-7de3-40d3-9d74-97927cbd2c36"
+                        });
+                });
+
+            modelBuilder.Entity("MyCompany_v3.Domain.Entities.MessageItem", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Text")
                         .HasColumnType("nvarchar(max)");
@@ -311,19 +347,9 @@ namespace MyCompany_v3.Migrations
                         new
                         {
                             Id = new Guid("2a0ca8d6-8f4f-4fe7-b7fc-23e123f650c0"),
-                            CreationDate = new DateTime(2021, 11, 26, 19, 42, 53, 422, DateTimeKind.Utc).AddTicks(8232),
-                            IsFeedback = false,
+                            CreationDate = new DateTime(2021, 12, 14, 16, 20, 5, 755, DateTimeKind.Utc).AddTicks(4752),
                             Text = "Text Text Text Text",
                             Title = "Tiiitle",
-                            UserId = "48a58e3e-7de3-40d3-9d74-97927cbd2c36"
-                        },
-                        new
-                        {
-                            Id = new Guid("d938d3a3-cd89-469b-a5b9-d83671f22c20"),
-                            CreationDate = new DateTime(2021, 11, 26, 19, 42, 53, 423, DateTimeKind.Utc).AddTicks(7854),
-                            IsFeedback = true,
-                            Text = "Your news is amazing",
-                            Title = "Feedback for your news",
                             UserId = "48a58e3e-7de3-40d3-9d74-97927cbd2c36"
                         });
                 });
@@ -354,6 +380,7 @@ namespace MyCompany_v3.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Text")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
@@ -372,7 +399,7 @@ namespace MyCompany_v3.Migrations
                         {
                             Id = new Guid("38eaedaf-34ce-45ae-907a-0ccb17366631"),
                             CodeWord = "PageNews",
-                            DateAdded = new DateTime(2021, 11, 26, 19, 42, 53, 422, DateTimeKind.Utc).AddTicks(4674),
+                            DateAdded = new DateTime(2021, 12, 14, 16, 20, 5, 754, DateTimeKind.Utc).AddTicks(65),
                             Text = "Join us, we are here!",
                             Title = "We opened"
                         });
@@ -388,9 +415,11 @@ namespace MyCompany_v3.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Text")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
@@ -404,7 +433,7 @@ namespace MyCompany_v3.Migrations
                         new
                         {
                             Id = new Guid("862ff5d9-2f4f-4522-90ae-b8d66cef3764"),
-                            DateAdded = new DateTime(2021, 11, 26, 19, 42, 53, 423, DateTimeKind.Utc).AddTicks(4364),
+                            DateAdded = new DateTime(2021, 12, 14, 16, 20, 5, 756, DateTimeKind.Utc).AddTicks(2468),
                             Text = "Hello I am really good at writing news",
                             Title = "First news to review",
                             UserId = "48a58e3e-7de3-40d3-9d74-97927cbd2c36"
@@ -490,7 +519,7 @@ namespace MyCompany_v3.Migrations
                         {
                             Id = new Guid("fa553176-6507-4047-9531-65a99b83d374"),
                             CodeWord = "PageIndex",
-                            DateAdded = new DateTime(2021, 11, 26, 19, 42, 53, 421, DateTimeKind.Utc).AddTicks(9958),
+                            DateAdded = new DateTime(2021, 12, 14, 16, 20, 5, 752, DateTimeKind.Utc).AddTicks(6017),
                             Text = "Content fills by admin",
                             Title = "Home page"
                         },
@@ -498,7 +527,7 @@ namespace MyCompany_v3.Migrations
                         {
                             Id = new Guid("27a8a46e-2e1c-49c5-935d-f16de71570ec"),
                             CodeWord = "PageServices",
-                            DateAdded = new DateTime(2021, 11, 26, 19, 42, 53, 422, DateTimeKind.Utc).AddTicks(3450),
+                            DateAdded = new DateTime(2021, 12, 14, 16, 20, 5, 752, DateTimeKind.Utc).AddTicks(9170),
                             Text = "Content fills by admin",
                             Title = "Our services"
                         },
@@ -506,7 +535,7 @@ namespace MyCompany_v3.Migrations
                         {
                             Id = new Guid("bd9078af-8dc7-4a7a-8d32-2b58c80ba785"),
                             CodeWord = "PageContacts",
-                            DateAdded = new DateTime(2021, 11, 26, 19, 42, 53, 422, DateTimeKind.Utc).AddTicks(3593),
+                            DateAdded = new DateTime(2021, 12, 14, 16, 20, 5, 752, DateTimeKind.Utc).AddTicks(9315),
                             Text = "Content fills by admin",
                             Title = "Contacts"
                         });

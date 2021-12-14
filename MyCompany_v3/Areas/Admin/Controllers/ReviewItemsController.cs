@@ -38,25 +38,51 @@ namespace MyCompany_v3.Areas.Admin.Controllers
             if (id != default)
             {
                 var review = dataManager.ReviewItems.GetReviewItemById(id);
-                var feedback = new MessageViewModel
+                var feedbackItem = new FeedbackItem()
                 {
-                    Id = review.Id,
+                    ReviewId = review.Id,
+                    UserId = review.UserId,
                     Title = review.Title,
-                    Text = review.Text,
-                    IsFeedback = true,
-                    UserId = review.UserId
+                    Text = review.Text
                 };
 
-                return View("Show", feedback);
+                return View("Show", feedbackItem);
             }
             return View(userReview);
         }
 
         [HttpPost]
-        public IActionResult Delete(Guid id)
+        public IActionResult ReviewControl(FeedbackItem model, string reviewControl)
+        {
+            if (ModelState.IsValid)
+            {
+                if (reviewControl == "Decline")
+                {
+                    dataManager.FeedbackItems.SaveFeedbackItem(model);
+                    Delete(model.ReviewId);
+                    return RedirectToAction(nameof(Index), nameof(ReviewItemsController).CutController());
+                }
+                if (reviewControl == "Approve")
+                {
+                    dataManager.FeedbackItems.SaveFeedbackItem(model);
+
+                    var review = dataManager.ReviewItems.GetReviewItemById(model.ReviewId);
+
+                    var news = new NewsItem()
+                    {
+                        Title = review.Title,
+                        Text = review.Text
+                    };
+                    dataManager.NewsItems.SaveNewsItem(news);
+                    return RedirectToAction(nameof(Index), nameof(ReviewItemsController).CutController());
+                }
+            }
+            return RedirectToAction(nameof(Index), nameof(ReviewItemsController).CutController(), new { id = model.ReviewId });
+        }
+        
+        private void Delete(Guid id)
         {
             dataManager.ReviewItems.DeleteReviewItem(id);
-            return RedirectToAction(nameof(Index), nameof(ReviewItemsController).CutController());
         }
     }
 }

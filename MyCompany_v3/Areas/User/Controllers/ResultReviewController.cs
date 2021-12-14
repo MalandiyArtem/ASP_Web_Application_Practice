@@ -26,14 +26,13 @@ namespace MyCompany_v3.Areas.User.Controllers
             ClaimsPrincipal currentUser = this.User;
             string UserId = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-            IQueryable<MessageViewModel> userMessage = from msg in dataManager.MessageItems.GeMessageItems()
+            IQueryable<FeedbackViewModel> userMessage = from msg in dataManager.FeedbackItems.GetFeedbackItems()
                 join user in _userManager.Users
                     on msg.UserId equals user.Id
-                where user.Id == UserId
-                where msg.IsFeedback == true
-                select new MessageViewModel()
+                where user.Id == msg.UserId
+                select new FeedbackViewModel()
                 {
-                    Id = msg.Id,
+                    FeedbackId = msg.Id,
                     Title = msg.Title,
                     Text = msg.Text,
                     UserId = user.Id,
@@ -42,14 +41,14 @@ namespace MyCompany_v3.Areas.User.Controllers
 
             if (id != default)
             {
-                return View("Show", dataManager.MessageItems.GeMessageItemById(id));
+                return View("Show", dataManager.FeedbackItems.GetFeedbackItemById(id));
             }
             return View(userMessage);
         }
 
         public IActionResult Delete(Guid id)
         {
-            dataManager.MessageItems.DeleteMessageItem(id);
+            dataManager.FeedbackItems.DeleteFeedbackItem(id);
             return RedirectToAction(nameof(ResultReviewController.Index), nameof(ResultReviewController).CutController());
         }
     }

@@ -21,6 +21,7 @@ namespace MyCompany_v3.Domain
          public DbSet<NewsItem> NewsItems { get; set; }
          public DbSet<MessageItem> MessageItems { get; set; }
          public DbSet<ReviewItem> ReviewItems { get; set; }
+         public DbSet<FeedbackItem> FeedbackItems { get; set; }
 
          protected override void OnModelCreating(ModelBuilder modelBuilder)
          {
@@ -130,8 +131,7 @@ namespace MyCompany_v3.Domain
                 Id = new Guid("2a0ca8d6-8f4f-4fe7-b7fc-23e123f650c0"),
                 Title = "Tiiitle",
                 Text = "Text Text Text Text",
-                UserId = "48a58e3e-7de3-40d3-9d74-97927cbd2c36",
-                IsFeedback = false
+                UserId = "48a58e3e-7de3-40d3-9d74-97927cbd2c36"
             });
 
             // Создаем новость на рецензию
@@ -143,14 +143,14 @@ namespace MyCompany_v3.Domain
                 UserId = "48a58e3e-7de3-40d3-9d74-97927cbd2c36"
             });
 
-            // Создаем ответ на рецензию
-            modelBuilder.Entity<MessageItem>().HasData(new MessageItem
+            // Создаем фидбек на рецензию
+            modelBuilder.Entity<FeedbackItem>().HasData(new FeedbackItem
             {
-                Id = new Guid("d938d3a3-cd89-469b-a5b9-d83671f22c20"),
-                Title = "Feedback for your news",
-                Text = "Your news is amazing",
+                Id = new Guid("ebb21448-243e-49fb-8fc4-c711b15a6dca"),
+                Title = "Well done",
+                Text = "Great job, your news was approved",
                 UserId = "48a58e3e-7de3-40d3-9d74-97927cbd2c36",
-                IsFeedback = true
+                ReviewId = new Guid("862ff5d9-2f4f-4522-90ae-b8d66cef3764")
             });
         }
     }

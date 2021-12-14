@@ -9,9 +9,9 @@ using Microsoft.AspNetCore.Identity;
 
 namespace MyCompany_v3.Domain.Entities
 {
-    public class MessageItem
+    public class FeedbackItem
     {
-        public MessageItem()
+        public FeedbackItem()
         {
             CreationDate = DateTime.UtcNow;
             Id = Guid.NewGuid();
@@ -24,13 +24,17 @@ namespace MyCompany_v3.Domain.Entities
         [Required]
         public DateTime CreationDate { get; set; }
 
+        [Required (ErrorMessage = "Title is required")]
         [Display(Name = "Title")]
         public string Title { get; set; }
 
+        [Required(ErrorMessage = "Content is required")]
         [Display(Name = "Content")]
         public string Text { get; set; }
 
-        [ForeignKey("UserId")]
         public string UserId { get; set; }
+
+        [ForeignKey("ReviewId")]
+        public Guid ReviewId { get; set; }
     }
 }

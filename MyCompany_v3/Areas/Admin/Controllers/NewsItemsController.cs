@@ -33,7 +33,7 @@ namespace MyCompany_v3.Areas.Admin.Controllers
             {
                 if (dataManager.NewsItems.GetNewsItems().Any(x => x.Title == model.Title))
                 {
-                    ViewBag.TitleIsExist = "true";
+                    ViewBag.TitleIsExist = true;
                     return View(model);
                 }
 

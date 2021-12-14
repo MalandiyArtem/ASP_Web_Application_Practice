@@ -24,8 +24,11 @@ namespace MyCompany_v3.Areas.User.Controllers
         public IActionResult Send()
         {
             ClaimsPrincipal currentUser = this.User;
-            ViewBag.UserId = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var entity = new ReviewItem();
+            string currentUserId = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var entity = new ReviewItem()
+            {
+                UserId = currentUserId
+            };
             return View(entity);
         }
 
