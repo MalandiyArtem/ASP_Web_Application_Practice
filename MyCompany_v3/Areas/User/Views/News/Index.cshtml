@@ -1,11 +1,4 @@
 ﻿@model IQueryable<NewsItem>
-@*@{
-    NewsItem newsField = ViewBag.NewsField;
-
-    ViewBag.Title = newsField.MetaTitle;
-    ViewBag.Description = newsField.MetaDescription;
-    ViewBag.Keywords = newsField.MetaKeywords;
-}*@
 
 <div class="div-box" style="margin-bottom: 30px">
     <a style="float: left" asp-area="User" asp-controller="SendReview" asp-action="Send">Send your news for review</a>

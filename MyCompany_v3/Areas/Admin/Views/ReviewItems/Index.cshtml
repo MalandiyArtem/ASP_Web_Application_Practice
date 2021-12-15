@@ -13,10 +13,6 @@
                 @foreach (var entity in Model)
                 {
                     <div>
-                        @*<form style="display: inline-block;" id="form-@entity.Id" asp-area="Admin" asp-controller="ReviewItems" asp-action="Delete" method="post">
-                            <input type="hidden" name="id" value="@entity.Id" />
-                            <a href="#" onclick="document.getElementById('form-@entity.Id').submit();">Delete</a>
-                        </form>*@
                         <span style="margin-left: 5px">Title: </span>
                         <a style="margin-left: 3px" asp-area="Admin" asp-controller="ReviewItems" asp-action="Index" asp-route-id="@entity.Id">
                             @($"{entity.Title}")

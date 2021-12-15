@@ -12,11 +12,6 @@
 </div>
 <div>
     @Html.Raw(Model.Text)
-
-    @*<form style="display: inline-block;" id="form-@Model.Id" asp-area="Admin" asp-controller="ReviewItems" asp-action="Delete" method="post">
-        <input type="hidden" name="id" value="@Model.Id" />
-        <a href="#" onclick="document.getElementById('form-@Model.Id').submit();">Delete</a>
-    </form>*@
 </div>
 
 <div style="margin-top: 50px">
@@ -47,30 +42,6 @@
             <input type="submit" value="Send" />
         </form>
     </div>
-
-
-    @*<div>
-        <form asp-area="User" asp-controller="Support" asp-action="WriteMessage" method="post" enctype="multipart/form-data">
-            <input type="hidden" asp-for="Id" />
-            <input type="hidden" asp-for="UserId" value="@Model.UserId" />
-            <input type="hidden" asp-for="IsFeedback" />
-
-            <div asp-validation-summary="All"></div>
-            <div class="div-box">
-                <label asp-for="Title"></label>
-                <input asp-for="Title" value="" />
-                <span asp-validation-for="Title"></span>
-            </div>
-
-            <div class="div-box">
-                <label asp-for="Text"></label>
-                <textarea asp-for="Text" value=" "></textarea>
-                <span asp-validation-for="Text"></span>
-            </div>
-
-            <input type="submit" value="Send" />
-        </form>
-    </div>*@
 </div>
 
 

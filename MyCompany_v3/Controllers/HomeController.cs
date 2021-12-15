@@ -1,8 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using MyCompany_v3.Domain;
 
 namespace MyCompany_v3.Controllers
@@ -27,10 +23,6 @@ namespace MyCompany_v3.Controllers
 
         public IActionResult Contacts()
         {
-            //if (User.Identity.IsAuthenticated)
-            //{
-            //    return RedirectToAction("Contacts", "Home", new { area = "User" });
-            //}
             return View(dataManager.TextFields.GetTextFieldByCodeWord("PageContacts"));
         }
     }

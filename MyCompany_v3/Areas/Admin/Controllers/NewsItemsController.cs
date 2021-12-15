@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
 using MyCompany_v3.Domain;
 using MyCompany_v3.Domain.Entities;
 using MyCompany_v3.Services;

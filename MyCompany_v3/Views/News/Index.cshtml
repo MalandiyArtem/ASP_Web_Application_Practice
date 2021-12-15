@@ -1,11 +1,4 @@
 ﻿@model IQueryable<NewsItem>
-@*@{
-    NewsItem newsField = ViewBag.NewsField;
-
-    ViewBag.Title = newsField.MetaTitle;
-    ViewBag.Description = newsField.MetaDescription;
-    ViewBag.Keywords = newsField.MetaKeywords;
-}*@
 
 <div>
     @if (Model.Any())

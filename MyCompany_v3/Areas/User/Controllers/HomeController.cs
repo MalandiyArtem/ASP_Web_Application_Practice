@@ -1,9 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MyCompany_v3.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace MyCompany_v3.Areas.User.Controllers
 {

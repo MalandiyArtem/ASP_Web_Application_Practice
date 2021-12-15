@@ -1,7 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -42,7 +39,6 @@ namespace MyCompany_v3.Controllers
                         await signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, false);
                     if (result.Succeeded)
                     {
-                        //return Redirect(returnUrl ?? "/");
                         return RedirectToAction("Index", "Home", new { area = "User" });
                     }
                 }
