@@ -20,7 +20,7 @@ namespace MyCompany_v3.Areas.Admin.Controllers
         public IActionResult ManageNews()
         {
             GetUserName();
-            return View(dataManager.NewsItems.GetNewsItems());
+            return View(dataManager.NewsItems.GetNewsItems().OrderByDescending(n => n.DateAdded));
         }
 
         private void GetUserName()

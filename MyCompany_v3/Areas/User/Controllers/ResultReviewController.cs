@@ -29,6 +29,7 @@ namespace MyCompany_v3.Areas.User.Controllers
             IQueryable<FeedbackViewModel> userMessage = from msg in dataManager.FeedbackItems.GetFeedbackItems()
                 join user in _userManager.Users
                     on msg.UserId equals user.Id
+                    orderby msg.CreationDate descending
                 where user.Id == msg.UserId
                 select new FeedbackViewModel()
                 {

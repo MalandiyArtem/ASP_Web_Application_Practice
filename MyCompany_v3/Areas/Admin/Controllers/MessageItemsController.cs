@@ -25,6 +25,7 @@ namespace MyCompany_v3.Areas.Admin.Controllers
             IQueryable<MessageViewModel> userMessage = from msg in dataManager.MessageItems.GeMessageItems()
                 join user in _userManager.Users 
                     on msg.UserId equals user.Id
+                    orderby msg.CreationDate descending
                 select new  MessageViewModel()
                 {
                     Id = msg.Id,

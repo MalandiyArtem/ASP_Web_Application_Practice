@@ -26,6 +26,7 @@ namespace MyCompany_v3.Areas.Admin.Controllers
             IQueryable<ReviewViewModel> userReview = from view in dataManager.ReviewItems.GetReviewsItems()
                 join user in _userManager.Users
                     on view.UserId equals user.Id
+                    orderby view.DateAdded descending
                 select new ReviewViewModel()
                 {
                     Id = view.Id,
