@@ -19,12 +19,14 @@ namespace MyCompany_v3.Areas.User.Controllers
         }
         public IActionResult Index()
         {
+            ViewBag.IsAdmin = User.IsInRole("admin");
             GetUserName();
             return View(dataManager.TextFields.GetTextFieldByCodeWord("PageIndex"));
         }
 
         public IActionResult Contacts()
         {
+            ViewBag.IsAdmin = User.IsInRole("admin");
             GetUserName();
             return View(dataManager.TextFields.GetTextFieldByCodeWord("PageContacts"));
         }

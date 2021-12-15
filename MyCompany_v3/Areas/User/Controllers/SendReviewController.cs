@@ -23,8 +23,8 @@ namespace MyCompany_v3.Areas.User.Controllers
         }
         public IActionResult Send()
         {
-            ClaimsPrincipal currentUser = this.User;
-            string currentUserId = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
+            ViewBag.IsAdmin = User.IsInRole("admin");
+            string currentUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var entity = new ReviewItem()
             {
                 UserId = currentUserId

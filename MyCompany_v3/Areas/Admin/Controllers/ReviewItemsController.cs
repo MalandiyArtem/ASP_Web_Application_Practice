@@ -23,6 +23,7 @@ namespace MyCompany_v3.Areas.Admin.Controllers
         }
         public IActionResult Index(Guid id)
         {
+            GetUserName();
             IQueryable<ReviewViewModel> userReview = from view in dataManager.ReviewItems.GetReviewsItems()
                 join user in _userManager.Users
                     on view.UserId equals user.Id
@@ -84,6 +85,11 @@ namespace MyCompany_v3.Areas.Admin.Controllers
         private void Delete(Guid id)
         {
             dataManager.ReviewItems.DeleteReviewItem(id);
+        }
+
+        private void GetUserName()
+        {
+            ViewBag.UserName = User.Identity.Name;
         }
     }
 }

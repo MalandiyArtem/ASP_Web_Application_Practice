@@ -20,8 +20,9 @@ namespace MyCompany_v3.Areas.User.Controllers
         }
         public IActionResult WriteMessage()
         {
-            ClaimsPrincipal currentUser = this.User;
-            ViewBag.UserId = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
+            GetUserName();
+            ViewBag.IsAdmin = User.IsInRole("admin");
+            ViewBag.UserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var entity = new MessageItem();
             return View(entity);
         }
@@ -35,6 +36,11 @@ namespace MyCompany_v3.Areas.User.Controllers
                 return RedirectToAction(nameof(HomeController.Index), nameof(HomeController).CutController());
             }
             return View(model);
+        }
+
+        private void GetUserName()
+        {
+            ViewBag.UserName = User.Identity.Name;
         }
     }
 }

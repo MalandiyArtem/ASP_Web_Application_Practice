@@ -11,7 +11,7 @@
                         <a asp-area="User" asp-controller="Services" asp-action="Index" asp-route-id="">Our services</a>
                         <a asp-area="User" asp-controller="News" asp-action="Index" asp-route-id="">News</a>
                         <a asp-area="User" asp-controller="Home" asp-action="Contacts">Contacts</a>
-                        @if (ViewBag.UserName == "admin")
+                        @if (ViewBag.IsAdmin == true)
                         {
                             <a asp-area="Admin" asp-controller="Home" asp-action="Index">Admin Panel</a>
                         }

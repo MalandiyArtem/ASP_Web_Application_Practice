@@ -22,6 +22,7 @@ namespace MyCompany_v3.Areas.Admin.Controllers
         }
         public IActionResult Index(Guid id)
         {
+            GetUserName();
             IQueryable<MessageViewModel> userMessage = from msg in dataManager.MessageItems.GeMessageItems()
                 join user in _userManager.Users 
                     on msg.UserId equals user.Id
@@ -46,6 +47,11 @@ namespace MyCompany_v3.Areas.Admin.Controllers
         {
             dataManager.MessageItems.DeleteMessageItem(id);
             return RedirectToAction(nameof(MessageItemsController.Index), nameof(MessageItemsController).CutController());
+        }
+
+        private void GetUserName()
+        {
+            ViewBag.UserName = User.Identity.Name;
         }
     }
 }

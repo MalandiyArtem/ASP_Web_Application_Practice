@@ -9,15 +9,9 @@
                     <nav id="nav">
                         <a asp-area="User" asp-controller="Home" asp-action="Index">Home</a>
                         <a asp-area="User" asp-controller="Services" asp-action="Index" asp-route-id="">Our services</a>
+                        <a asp-area="User" asp-controller="News" asp-action="Index" asp-route-id="">News</a>
                         <a asp-area="User" asp-controller="Home" asp-action="Contacts">Contacts</a>
-                        @if ((string)Url.ActionContext.RouteData.Values["action"] == "ManageNews")
-                        {
-                            <a asp-area="Admin" asp-controller="Home" asp-action="Index">Admin Panel</a>
-                        }
-                        else
-                        {
-                            <a asp-area="Admin" asp-controller="News" asp-action="ManageNews">Manage news</a>
-                        }
+                        <a asp-area="Admin" asp-controller="Home" asp-action="Index">Admin Panel</a>
                         <a asp-area="" asp-controller="Account" asp-action="Logout">Exit</a>
                     </nav>
                     <p style="color: #fffacd"> Welcome, @ViewBag.UserName to</p>

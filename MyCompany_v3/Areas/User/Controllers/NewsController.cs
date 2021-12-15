@@ -19,6 +19,7 @@ namespace MyCompany_v3.Areas.User.Controllers
 
         public IActionResult Index(Guid id)
         {
+            ViewBag.IsAdmin = User.IsInRole("admin");
             //if (id != default)
             //    return View("Show", dataManager.NewsItems.GetNewsItemById(id));
 
