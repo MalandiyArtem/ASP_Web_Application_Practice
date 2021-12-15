@@ -19,6 +19,7 @@ namespace MyCompany_v3.Areas.User.Controllers
         }
         public IActionResult Send()
         {
+            GetUserName();
             ViewBag.IsAdmin = User.IsInRole("admin");
             string currentUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var entity = new ReviewItem()
@@ -38,6 +39,11 @@ namespace MyCompany_v3.Areas.User.Controllers
             }
 
             return View(model);
+        }
+
+        private void GetUserName()
+        {
+            ViewBag.UserName = User.Identity.Name;
         }
     }
 }

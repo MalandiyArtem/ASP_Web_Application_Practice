@@ -22,6 +22,7 @@ namespace MyCompany_v3.Areas.User.Controllers
         }
         public IActionResult Index(Guid id)
         {
+            GetUserName();
             ViewBag.IsAdmin = User.IsInRole("admin");
             ClaimsPrincipal currentUser = this.User;
             string UserId = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -51,6 +52,11 @@ namespace MyCompany_v3.Areas.User.Controllers
         {
             dataManager.FeedbackItems.DeleteFeedbackItem(id);
             return RedirectToAction(nameof(ResultReviewController.Index), nameof(ResultReviewController).CutController());
+        }
+
+        private void GetUserName()
+        {
+            ViewBag.UserName = User.Identity.Name;
         }
     }
 }
